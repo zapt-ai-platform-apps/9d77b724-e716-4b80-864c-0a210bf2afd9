@@ -1,21 +1,17 @@
 import { createSignal, Show } from 'solid-js';
-import { supabase, createEvent } from '../supabaseClient';
+import { createEvent } from '../supabaseClient';
 import ResumeForm from './ResumeForm';
 import ResumePreview from './ResumePreview';
 import { saveAs } from 'file-saver';
 
-function ResumeGenerator(props) {
+function ResumeGenerator() {
   const [loading, setLoading] = createSignal(false);
   const [resumeData, setResumeData] = createSignal(null);
-
-  const handleSignOut = async () => {
-    await supabase.auth.signOut();
-  };
 
   const generateResume = async (formData) => {
     setLoading(true);
     try {
-      const prompt = `Please generate a professional resume in markdown format based on the following information:\n\n${JSON.stringify(formData, null, 2)}`;
+      const prompt = `Please generate a professional resume in markdown format based on the following information in Arabic language:\n\n${JSON.stringify(formData, null, 2)}`;
 
       const result = await createEvent('chatgpt_request', {
         prompt: prompt,
@@ -45,12 +41,6 @@ function ResumeGenerator(props) {
       <div class="max-w-6xl mx-auto">
         <div class="flex justify-between items-center mb-8">
           <h1 class="text-4xl font-bold text-purple-600 cursor-pointer">مولد السيرة الذاتية</h1>
-          <button
-            class="cursor-pointer bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-6 rounded-full shadow-md focus:outline-none focus:ring-2 focus:ring-red-400 transition duration-300 ease-in-out transform hover:scale-105"
-            onClick={handleSignOut}
-          >
-            تسجيل الخروج
-          </button>
         </div>
         <ResumeForm onSubmit={generateResume} loading={loading()} />
         <Show when={resumeData()}>
