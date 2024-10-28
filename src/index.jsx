@@ -1,5 +1,4 @@
 import { render } from 'solid-js/web';
-import { Router } from '@solidjs/router';
 import App from './App';
 import './index.css';
 
@@ -16,7 +15,5 @@ script.setAttribute('defer', 'true');
 document.querySelector('head').appendChild(script);
 
 render(() => (
-  <Router>
-    <App />
-  </Router>
+  <App />
 ), document.getElementById('root'));

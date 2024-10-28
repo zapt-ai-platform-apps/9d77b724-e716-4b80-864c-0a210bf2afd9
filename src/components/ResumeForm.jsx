@@ -24,7 +24,7 @@ function ResumeForm(props) {
         placeholder="الاسم"
         value={formData().name}
         onInput={(e) => setFormData({ ...formData(), name: e.target.value })}
-        class="box-border w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-400 focus:border-transparent text-gray-700"
+        class="box-border w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-400 focus:border-transparent"
         required
       />
       <input
@@ -32,7 +32,7 @@ function ResumeForm(props) {
         placeholder="البريد الإلكتروني"
         value={formData().email}
         onInput={(e) => setFormData({ ...formData(), email: e.target.value })}
-        class="box-border w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-400 focus:border-transparent text-gray-700"
+        class="box-border w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-400 focus:border-transparent"
         required
       />
       <input
@@ -40,38 +40,38 @@ function ResumeForm(props) {
         placeholder="رقم الهاتف"
         value={formData().phone}
         onInput={(e) => setFormData({ ...formData(), phone: e.target.value })}
-        class="box-border w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-400 focus:border-transparent text-gray-700"
+        class="box-border w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-400 focus:border-transparent"
       />
       <input
         type="text"
         placeholder="العنوان"
         value={formData().address}
         onInput={(e) => setFormData({ ...formData(), address: e.target.value })}
-        class="box-border w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-400 focus:border-transparent text-gray-700"
+        class="box-border w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-400 focus:border-transparent"
       />
       <textarea
         placeholder="ملخص"
         value={formData().summary}
         onInput={(e) => setFormData({ ...formData(), summary: e.target.value })}
-        class="box-border w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-400 focus:border-transparent text-gray-700"
+        class="box-border w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-400 focus:border-transparent"
       ></textarea>
       <textarea
         placeholder="التعليم"
         value={formData().education}
         onInput={(e) => setFormData({ ...formData(), education: e.target.value })}
-        class="box-border w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-400 focus:border-transparent text-gray-700"
+        class="box-border w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-400 focus:border-transparent"
       ></textarea>
       <textarea
         placeholder="الخبرات العملية"
         value={formData().experience}
         onInput={(e) => setFormData({ ...formData(), experience: e.target.value })}
-        class="box-border w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-400 focus:border-transparent text-gray-700"
+        class="box-border w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-400 focus:border-transparent"
       ></textarea>
       <textarea
         placeholder="المهارات"
         value={formData().skills}
         onInput={(e) => setFormData({ ...formData(), skills: e.target.value })}
-        class="box-border w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-400 focus:border-transparent text-gray-700"
+        class="box-border w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-400 focus:border-transparent"
       ></textarea>
       <button
         type="submit"

@@ -11,7 +11,7 @@ function ResumeGenerator() {
   const generateResume = async (formData) => {
     setLoading(true);
     try {
-      const prompt = `Please generate a professional resume in markdown format based on the following information in Arabic language:\n\n${JSON.stringify(formData, null, 2)}`;
+      const prompt = `Please generate a professional resume in markdown format based on the following information:\n\n${JSON.stringify(formData, null, 2)}`;
 
       const result = await createEvent('chatgpt_request', {
         prompt: prompt,
