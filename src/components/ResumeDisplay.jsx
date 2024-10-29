@@ -25,10 +25,15 @@ function ResumeDisplay() {
   };
 
   return (
-    <div class="h-full bg-gradient-to-br from-purple-100 to-blue-100 p-4">
+    <div class="min-h-screen bg-gradient-to-br from-purple-100 to-blue-100 p-4">
       <div class="max-w-4xl mx-auto">
         <div class="flex justify-between items-center mb-4">
-          <h1 class="text-3xl font-bold text-purple-600 cursor-pointer">سيرتك الذاتية</h1>
+          <h1
+            class="text-3xl font-bold text-purple-600 cursor-pointer"
+            onClick={() => navigate('/')}
+          >
+            سيرتك الذاتية
+          </h1>
           <div>
             <button
               class="cursor-pointer bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition duration-300 ease-in-out transform hover:scale-105 mr-2"
@@ -47,7 +52,10 @@ function ResumeDisplay() {
         <div id="resume-preview" class="bg-white p-6 rounded-lg shadow-lg">
           <div class="text-center">
             <h2 class="text-4xl font-bold mb-2 text-gray-800">{resumeData().name}</h2>
-            <p class="text-gray-600">{resumeData().email} | {resumeData().phone} | {resumeData().address}</p>
+            <p class="text-gray-600">
+              {resumeData().email} | {resumeData().phone} | {resumeData().address}
+            </p>
+            <p class="text-gray-600">تاريخ الازدياد: {resumeData().birthDate}</p>
           </div>
           <div class="mt-6">
             <h3 class="text-2xl font-semibold mb-2 text-purple-600">الملف الشخصي</h3>
