@@ -1,4 +1,4 @@
-import { createSignal, onMount, Show } from 'solid-js';
+import { createSignal, onMount } from 'solid-js';
 import { resumeData } from '../stores/resumeStore';
 import { useNavigate } from '@solidjs/router';
 import html2canvas from 'html2canvas';
@@ -15,7 +15,6 @@ function ResumeDisplay() {
   });
 
   const downloadPDF = async () => {
-    if (loading()) return;
     setLoading(true);
     try {
       const resumeElement = document.getElementById('resume-preview');
@@ -34,7 +33,7 @@ function ResumeDisplay() {
   };
 
   return (
-    <div class="min-h-screen bg-gradient-to-br from-purple-100 to-blue-100 p-4 text-gray-800">
+    <div class="h-full bg-gradient-to-br from-purple-100 to-blue-100 p-4 text-gray-800">
       <div class="max-w-4xl mx-auto">
         <div class="flex justify-between items-center mb-4">
           <h1
@@ -73,34 +72,24 @@ function ResumeDisplay() {
             <p class="text-gray-600">
               {resumeData()?.email || ''} | {resumeData()?.phone || ''} | {resumeData()?.address || ''}
             </p>
-            <p class="text-gray-600">
-              {resumeData()?.birthDate ? `تاريخ الميلاد: ${resumeData().birthDate}` : ''}
-            </p>
+            <p class="text-gray-600">تاريخ الازدياد: {resumeData()?.birthDate || ''}</p>
           </div>
-          <Show when={resumeData()?.summary}>
-            <div class="mt-6 text-right">
-              <h3 class="text-2xl font-semibold mb-2 text-purple-600">الملف الشخصي</h3>
-              <p class="text-gray-700">{resumeData().summary}</p>
-            </div>
-          </Show>
-          <Show when={resumeData()?.education}>
-            <div class="mt-6 text-right">
-              <h3 class="text-2xl font-semibold mb-2 text-purple-600">التعليم</h3>
-              <p class="text-gray-700 whitespace-pre-wrap">{resumeData().education}</p>
-            </div>
-          </Show>
-          <Show when={resumeData()?.experience}>
-            <div class="mt-6 text-right">
-              <h3 class="text-2xl font-semibold mb-2 text-purple-600">الخبرات العملية</h3>
-              <p class="text-gray-700 whitespace-pre-wrap">{resumeData().experience}</p>
-            </div>
-          </Show>
-          <Show when={resumeData()?.skills}>
-            <div class="mt-6 text-right">
-              <h3 class="text-2xl font-semibold mb-2 text-purple-600">المهارات</h3>
-              <p class="text-gray-700">{resumeData().skills}</p>
-            </div>
-          </Show>
+          <div class="mt-6 text-right">
+            <h3 class="text-2xl font-semibold mb-2 text-purple-600">الملف الشخصي</h3>
+            <p class="text-gray-700">{resumeData()?.summary || ''}</p>
+          </div>
+          <div class="mt-6 text-right">
+            <h3 class="text-2xl font-semibold mb-2 text-purple-600">التعليم</h3>
+            <p class="text-gray-700 whitespace-pre-wrap">{resumeData()?.education || ''}</p>
+          </div>
+          <div class="mt-6 text-right">
+            <h3 class="text-2xl font-semibold mb-2 text-purple-600">الخبرات العملية</h3>
+            <p class="text-gray-700 whitespace-pre-wrap">{resumeData()?.experience || ''}</p>
+          </div>
+          <div class="mt-6 text-right">
+            <h3 class="text-2xl font-semibold mb-2 text-purple-600">المهارات</h3>
+            <p class="text-gray-700">{resumeData()?.skills || ''}</p>
+          </div>
         </div>
       </div>
     </div>

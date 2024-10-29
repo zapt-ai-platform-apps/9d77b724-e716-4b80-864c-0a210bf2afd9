@@ -4,7 +4,7 @@ function HowToUse() {
   const navigate = useNavigate();
 
   return (
-    <div class="min-h-screen bg-gradient-to-br from-purple-100 to-blue-100 p-4 text-gray-800">
+    <div class="h-full bg-gradient-to-br from-purple-100 to-blue-100 p-4 text-gray-800">
       <div class="max-w-4xl mx-auto">
         <div class="flex justify-between items-center mb-4">
           <h1
@@ -27,7 +27,7 @@ function HowToUse() {
               <strong>البدء:</strong> افتح التطبيق وستظهر لك الصفحة الرئيسية التي تحتوي على نموذج لإدخال معلوماتك.
             </li>
             <li>
-              <strong>إدخال المعلومات الأساسية:</strong> قم بإدخال اسمك، تاريخ الازدياد، البريد الإلكتروني، رقم الهاتف، والعنوان.
+              <strong>إدخال المعلومات الأساسية:</strong> قم بإدخال اسمك، تاريخ الازدياد، البريد الإلكتروني، رقم الهاتف، والعنوان. ستجد لكل حقل تسمية واضحة لتسهيل عملية الإدخال.
             </li>
             <li>
               <strong>الملخص الشخصي:</strong> اكتب نبذة مختصرة عن نفسك لتعطي انطباعًا أوليًا قويًا.

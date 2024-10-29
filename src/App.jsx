@@ -5,7 +5,7 @@ import HowToUse from './components/HowToUse';
 
 function App() {
   return (
-    <div class="min-h-screen">
+    <div class="h-full">
       <Router>
         <Routes>
           <Route path="/" component={ResumeGenerator} />

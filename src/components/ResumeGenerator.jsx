@@ -20,10 +20,9 @@ function ResumeGenerator() {
   };
 
   const generateResume = async () => {
-    if (loading()) return;
     setLoading(true);
     try {
-      const prompt = `رجاءً قم بإنشاء سيرة ذاتية احترافية باللغة العربية استنادًا إلى المعلومات التالية وأعدها بتنسيق JSON:
+      const prompt = `رجاء قم بإنشاء سيرة ذاتية احترافية باللغة العربية استنادًا إلى المعلومات التالية وأعدها بتنسيق JSON:
 
 المعلومات:
 
@@ -32,10 +31,10 @@ ${JSON.stringify(formData(), null, 2)}
 يرجى استخدام هذا التنسيق للرد:
 {
   "name": "",
+  "birthDate": "",
   "email": "",
   "phone": "",
   "address": "",
-  "birthDate": "",
   "summary": "",
   "education": "",
   "experience": "",
@@ -62,7 +61,7 @@ ${JSON.stringify(formData(), null, 2)}
   };
 
   return (
-    <div class="min-h-screen bg-gradient-to-br from-purple-100 to-blue-100 p-4 text-gray-800">
+    <div class="h-full bg-gradient-to-br from-purple-100 to-blue-100 p-4 text-gray-800">
       <div class="max-w-4xl mx-auto h-full">
         <div class="flex justify-between items-center mb-8">
           <h1
@@ -79,13 +78,13 @@ ${JSON.stringify(formData(), null, 2)}
           </button>
         </div>
         <Show when={step() === 1}>
-          <ResumeForm onNext={handleNext} loading={loading} />
+          <ResumeForm onNext={handleNext} loading={loading()} />
         </Show>
         <Show when={step() === 2}>
           <form class="space-y-6">
             <h2 class="text-2xl font-bold mb-4 text-purple-600">الملخص الشخصي</h2>
             <div class="mb-4">
-              <label class="block mb-1 text-gray-800">نبذة عنك</label>
+              <label class="block text-gray-700 mb-2">الملخص الشخصي</label>
               <textarea
                 placeholder="اكتب نبذة مختصرة عن نفسك"
                 value={formData().summary}
@@ -99,20 +98,20 @@ ${JSON.stringify(formData(), null, 2)}
             <div class="flex space-x-4">
               <button
                 type="button"
-                class="cursor-pointer flex-1 px-6 py-3 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition duration-300 ease-in-out transform hover:scale-105"
                 onClick={() => setStep(step() - 1)}
+                class="cursor-pointer flex-1 px-6 py-3 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition duration-300 ease-in-out transform hover:scale-105"
               >
                 رجوع
               </button>
               <button
                 type="button"
+                onClick={() => handleNext({})}
                 class={`cursor-pointer flex-1 px-6 py-3 bg-purple-500 text-white rounded-lg hover:bg-purple-600 transition duration-300 ease-in-out transform hover:scale-105 ${
                   loading() ? 'opacity-50 cursor-not-allowed' : ''
                 }`}
                 disabled={loading()}
-                onClick={() => handleNext({})}
               >
-                {loading() ? 'جاري التحميل...' : 'التالي'}
+                التالي
               </button>
             </div>
           </form>
@@ -121,7 +120,7 @@ ${JSON.stringify(formData(), null, 2)}
           <form class="space-y-6">
             <h2 class="text-2xl font-bold mb-4 text-purple-600">المعلومات الإضافية</h2>
             <div class="mb-4">
-              <label class="block mb-1 text-gray-800">التعليم</label>
+              <label class="block text-gray-700 mb-2">التعليم</label>
               <textarea
                 placeholder="التعليم"
                 value={formData().education}
@@ -133,7 +132,7 @@ ${JSON.stringify(formData(), null, 2)}
               ></textarea>
             </div>
             <div class="mb-4">
-              <label class="block mb-1 text-gray-800">الخبرات العملية</label>
+              <label class="block text-gray-700 mb-2">الخبرات العملية</label>
               <textarea
                 placeholder="الخبرات العملية"
                 value={formData().experience}
@@ -145,7 +144,7 @@ ${JSON.stringify(formData(), null, 2)}
               ></textarea>
             </div>
             <div class="mb-4">
-              <label class="block mb-1 text-gray-800">المهارات</label>
+              <label class="block text-gray-700 mb-2">المهارات</label>
               <textarea
                 placeholder="المهارات"
                 value={formData().skills}
@@ -159,20 +158,20 @@ ${JSON.stringify(formData(), null, 2)}
             <div class="flex space-x-4">
               <button
                 type="button"
-                class="cursor-pointer flex-1 px-6 py-3 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition duration-300 ease-in-out transform hover:scale-105"
                 onClick={() => setStep(step() - 1)}
+                class="cursor-pointer flex-1 px-6 py-3 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition duration-300 ease-in-out transform hover:scale-105"
               >
                 رجوع
               </button>
               <button
                 type="button"
+                onClick={() => handleNext({})}
                 class={`cursor-pointer flex-1 px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition duration-300 ease-in-out transform hover:scale-105 ${
                   loading() ? 'opacity-50 cursor-not-allowed' : ''
                 }`}
                 disabled={loading()}
-                onClick={() => handleNext({})}
               >
-                {loading() ? 'جاري التحميل...' : 'توليد السيرة الذاتية'}
+                توليد السيرة الذاتية
               </button>
             </div>
           </form>
