@@ -85,9 +85,8 @@ ${JSON.stringify(formData(), null, 2)}
           <form class="space-y-6">
             <h2 class="text-2xl font-bold mb-4 text-purple-600">الملخص الشخصي</h2>
             <div class="mb-4">
-              <label for="summary" class="block text-gray-700 mb-2">الملخص الشخصي:</label>
+              <label class="block mb-1 text-gray-800">نبذة عنك</label>
               <textarea
-                id="summary"
                 placeholder="اكتب نبذة مختصرة عن نفسك"
                 value={formData().summary}
                 onInput={(e) =>
@@ -122,10 +121,9 @@ ${JSON.stringify(formData(), null, 2)}
           <form class="space-y-6">
             <h2 class="text-2xl font-bold mb-4 text-purple-600">المعلومات الإضافية</h2>
             <div class="mb-4">
-              <label for="education" class="block text-gray-700 mb-2">التعليم:</label>
+              <label class="block mb-1 text-gray-800">التعليم</label>
               <textarea
-                id="education"
-                placeholder="أدخل تفاصيل تعليمك"
+                placeholder="التعليم"
                 value={formData().education}
                 onInput={(e) =>
                   setFormData({ ...formData(), education: e.target.value })
@@ -135,10 +133,9 @@ ${JSON.stringify(formData(), null, 2)}
               ></textarea>
             </div>
             <div class="mb-4">
-              <label for="experience" class="block text-gray-700 mb-2">الخبرات العملية:</label>
+              <label class="block mb-1 text-gray-800">الخبرات العملية</label>
               <textarea
-                id="experience"
-                placeholder="أدخل خبراتك العملية"
+                placeholder="الخبرات العملية"
                 value={formData().experience}
                 onInput={(e) =>
                   setFormData({ ...formData(), experience: e.target.value })
@@ -148,10 +145,9 @@ ${JSON.stringify(formData(), null, 2)}
               ></textarea>
             </div>
             <div class="mb-4">
-              <label for="skills" class="block text-gray-700 mb-2">المهارات:</label>
+              <label class="block mb-1 text-gray-800">المهارات</label>
               <textarea
-                id="skills"
-                placeholder="أدخل مهاراتك"
+                placeholder="المهارات"
                 value={formData().skills}
                 onInput={(e) =>
                   setFormData({ ...formData(), skills: e.target.value })
