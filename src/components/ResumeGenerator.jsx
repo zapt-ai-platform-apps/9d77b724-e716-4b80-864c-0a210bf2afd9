@@ -1,6 +1,6 @@
 import { createSignal, Show } from 'solid-js';
 import { createEvent } from '../supabaseClient';
-import { useNavigate } from '@solidjs/router';
+import { useNavigate, Link } from '@solidjs/router';
 import { setResumeData } from '../stores/resumeStore';
 import ResumeForm from './ResumeForm';
 
@@ -52,6 +52,12 @@ function ResumeGenerator() {
           >
             منشئ السيرة الذاتية الاحترافية
           </h1>
+          <Link
+            href="/how-to-use"
+            class="cursor-pointer bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition duration-300 ease-in-out transform hover:scale-105"
+          >
+            كيفية الاستخدام
+          </Link>
         </div>
         <Show when={step() === 1}>
           <ResumeForm onNext={handleNext} loading={loading()} />

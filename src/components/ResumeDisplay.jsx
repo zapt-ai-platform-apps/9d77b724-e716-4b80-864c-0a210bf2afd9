@@ -1,6 +1,6 @@
 import { createSignal, onMount } from 'solid-js';
 import { resumeData } from '../stores/resumeStore';
-import { useNavigate } from '@solidjs/router';
+import { useNavigate, Link } from '@solidjs/router';
 import { saveAs } from 'file-saver';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
@@ -44,6 +44,12 @@ function ResumeDisplay() {
             سيرتك الذاتية
           </h1>
           <div>
+            <Link
+              href="/how-to-use"
+              class="cursor-pointer bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition duration-300 ease-in-out transform hover:scale-105 mr-2"
+            >
+              كيفية الاستخدام
+            </Link>
             <button
               class={`cursor-pointer bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition duration-300 ease-in-out transform hover:scale-105 mr-2 ${
                 loading() ? 'opacity-50 cursor-not-allowed' : ''
