@@ -4,7 +4,7 @@ function HowToUse() {
   const navigate = useNavigate();
 
   return (
-    <div class="min-h-screen bg-gradient-to-br from-purple-100 to-blue-100 p-4">
+    <div class="h-full bg-gradient-to-br from-purple-100 to-blue-100 p-4">
       <div class="max-w-4xl mx-auto">
         <div class="flex justify-between items-center mb-4">
           <h1
@@ -39,7 +39,7 @@ function HowToUse() {
               <strong>المهارات:</strong> أضف مهاراتك الأساسية التي تميزك.
             </li>
             <li>
-              <strong>توليد السيرة الذاتية:</strong> بعد إكمال جميع الخطوات، اضغط على "توليد السيرة الذاتية".
+              <strong>توليد السيرة الذاتية:</strong> بعد إكمال جميع الخطوات، اضغط على زر "توليد السيرة الذاتية".
             </li>
             <li>
               <strong>معاينة وتنزيل:</strong> ستُعرض عليك السيرة الذاتية التي تم توليدها. يمكنك معاينتها والتأكد من صحة المعلومات.

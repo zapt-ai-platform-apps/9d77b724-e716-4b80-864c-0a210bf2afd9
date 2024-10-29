@@ -1,7 +1,6 @@
 import { createSignal, onMount } from 'solid-js';
 import { resumeData } from '../stores/resumeStore';
-import { useNavigate, Link } from '@solidjs/router';
-import { saveAs } from 'file-saver';
+import { useNavigate } from '@solidjs/router';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 
@@ -34,7 +33,7 @@ function ResumeDisplay() {
   };
 
   return (
-    <div class="min-h-screen bg-gradient-to-br from-purple-100 to-blue-100 p-4">
+    <div class="h-full bg-gradient-to-br from-purple-100 to-blue-100 p-4">
       <div class="max-w-4xl mx-auto">
         <div class="flex justify-between items-center mb-4">
           <h1
@@ -44,12 +43,12 @@ function ResumeDisplay() {
             سيرتك الذاتية
           </h1>
           <div>
-            <Link
-              href="/how-to-use"
+            <button
               class="cursor-pointer bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition duration-300 ease-in-out transform hover:scale-105 mr-2"
+              onClick={() => navigate('/how-to-use')}
             >
               كيفية الاستخدام
-            </Link>
+            </button>
             <button
               class={`cursor-pointer bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition duration-300 ease-in-out transform hover:scale-105 mr-2 ${
                 loading() ? 'opacity-50 cursor-not-allowed' : ''
