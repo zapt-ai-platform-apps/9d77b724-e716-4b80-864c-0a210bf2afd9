@@ -20,9 +20,10 @@ function ResumeGenerator() {
   };
 
   const generateResume = async () => {
+    if (loading()) return;
     setLoading(true);
     try {
-      const prompt = `رجاء قم بإنشاء سيرة ذاتية احترافية باللغة العربية استنادًا إلى المعلومات التالية وأعدها بتنسيق JSON:
+      const prompt = `رجاءً قم بإنشاء سيرة ذاتية احترافية باللغة العربية استنادًا إلى المعلومات التالية وأعدها بتنسيق JSON:
 
 المعلومات:
 
@@ -31,7 +32,10 @@ ${JSON.stringify(formData(), null, 2)}
 يرجى استخدام هذا التنسيق للرد:
 {
   "name": "",
-  "contactInfo": "",
+  "email": "",
+  "phone": "",
+  "address": "",
+  "birthDate": "",
   "summary": "",
   "education": "",
   "experience": "",
@@ -75,37 +79,41 @@ ${JSON.stringify(formData(), null, 2)}
           </button>
         </div>
         <Show when={step() === 1}>
-          <ResumeForm onNext={handleNext} loading={loading()} />
+          <ResumeForm onNext={handleNext} loading={loading} />
         </Show>
         <Show when={step() === 2}>
           <form class="space-y-6">
             <h2 class="text-2xl font-bold mb-4 text-purple-600">الملخص الشخصي</h2>
-            <textarea
-              placeholder="اكتب نبذة مختصرة عن نفسك"
-              value={formData().summary}
-              onInput={(e) =>
-                setFormData({ ...formData(), summary: e.target.value })
-              }
-              class="box-border w-full p-3 mb-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-400 focus:border-transparent text-gray-800"
-              rows="4"
-            ></textarea>
+            <div class="mb-4">
+              <label for="summary" class="block text-gray-700 mb-2">الملخص الشخصي:</label>
+              <textarea
+                id="summary"
+                placeholder="اكتب نبذة مختصرة عن نفسك"
+                value={formData().summary}
+                onInput={(e) =>
+                  setFormData({ ...formData(), summary: e.target.value })
+                }
+                class="box-border w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-400 focus:border-transparent text-gray-800"
+                rows="4"
+              ></textarea>
+            </div>
             <div class="flex space-x-4">
               <button
                 type="button"
-                onClick={() => setStep(step() - 1)}
                 class="cursor-pointer flex-1 px-6 py-3 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition duration-300 ease-in-out transform hover:scale-105"
+                onClick={() => setStep(step() - 1)}
               >
                 رجوع
               </button>
               <button
                 type="button"
-                onClick={() => handleNext({})}
                 class={`cursor-pointer flex-1 px-6 py-3 bg-purple-500 text-white rounded-lg hover:bg-purple-600 transition duration-300 ease-in-out transform hover:scale-105 ${
                   loading() ? 'opacity-50 cursor-not-allowed' : ''
                 }`}
                 disabled={loading()}
+                onClick={() => handleNext({})}
               >
-                التالي
+                {loading() ? 'جاري التحميل...' : 'التالي'}
               </button>
             </div>
           </form>
@@ -113,50 +121,62 @@ ${JSON.stringify(formData(), null, 2)}
         <Show when={step() === 3}>
           <form class="space-y-6">
             <h2 class="text-2xl font-bold mb-4 text-purple-600">المعلومات الإضافية</h2>
-            <textarea
-              placeholder="التعليم"
-              value={formData().education}
-              onInput={(e) =>
-                setFormData({ ...formData(), education: e.target.value })
-              }
-              class="box-border w-full p-3 mb-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-400 focus:border-transparent text-gray-800"
-              rows="3"
-            ></textarea>
-            <textarea
-              placeholder="الخبرات العملية"
-              value={formData().experience}
-              onInput={(e) =>
-                setFormData({ ...formData(), experience: e.target.value })
-              }
-              class="box-border w-full p-3 mb-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-400 focus:border-transparent text-gray-800"
-              rows="3"
-            ></textarea>
-            <textarea
-              placeholder="المهارات"
-              value={formData().skills}
-              onInput={(e) =>
-                setFormData({ ...formData(), skills: e.target.value })
-              }
-              class="box-border w-full p-3 mb-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-400 focus:border-transparent text-gray-800"
-              rows="3"
-            ></textarea>
+            <div class="mb-4">
+              <label for="education" class="block text-gray-700 mb-2">التعليم:</label>
+              <textarea
+                id="education"
+                placeholder="أدخل تفاصيل تعليمك"
+                value={formData().education}
+                onInput={(e) =>
+                  setFormData({ ...formData(), education: e.target.value })
+                }
+                class="box-border w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-400 focus:border-transparent text-gray-800"
+                rows="3"
+              ></textarea>
+            </div>
+            <div class="mb-4">
+              <label for="experience" class="block text-gray-700 mb-2">الخبرات العملية:</label>
+              <textarea
+                id="experience"
+                placeholder="أدخل خبراتك العملية"
+                value={formData().experience}
+                onInput={(e) =>
+                  setFormData({ ...formData(), experience: e.target.value })
+                }
+                class="box-border w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-400 focus:border-transparent text-gray-800"
+                rows="3"
+              ></textarea>
+            </div>
+            <div class="mb-4">
+              <label for="skills" class="block text-gray-700 mb-2">المهارات:</label>
+              <textarea
+                id="skills"
+                placeholder="أدخل مهاراتك"
+                value={formData().skills}
+                onInput={(e) =>
+                  setFormData({ ...formData(), skills: e.target.value })
+                }
+                class="box-border w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-400 focus:border-transparent text-gray-800"
+                rows="3"
+              ></textarea>
+            </div>
             <div class="flex space-x-4">
               <button
                 type="button"
-                onClick={() => setStep(step() - 1)}
                 class="cursor-pointer flex-1 px-6 py-3 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition duration-300 ease-in-out transform hover:scale-105"
+                onClick={() => setStep(step() - 1)}
               >
                 رجوع
               </button>
               <button
                 type="button"
-                onClick={() => handleNext({})}
                 class={`cursor-pointer flex-1 px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition duration-300 ease-in-out transform hover:scale-105 ${
                   loading() ? 'opacity-50 cursor-not-allowed' : ''
                 }`}
                 disabled={loading()}
+                onClick={() => handleNext({})}
               >
-                توليد السيرة الذاتية
+                {loading() ? 'جاري التحميل...' : 'توليد السيرة الذاتية'}
               </button>
             </div>
           </form>

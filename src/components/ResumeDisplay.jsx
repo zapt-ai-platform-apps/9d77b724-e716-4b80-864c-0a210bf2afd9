@@ -15,6 +15,7 @@ function ResumeDisplay() {
   });
 
   const downloadPDF = async () => {
+    if (loading()) return;
     setLoading(true);
     try {
       const resumeElement = document.getElementById('resume-preview');
@@ -68,27 +69,27 @@ function ResumeDisplay() {
         </div>
         <div id="resume-preview" class="bg-white p-6 rounded-lg shadow-lg">
           <div class="text-center">
-            <h2 class="text-4xl font-bold mb-2 text-gray-800">{resumeData().name}</h2>
+            <h2 class="text-4xl font-bold mb-2 text-gray-800">{resumeData()?.name || ''}</h2>
             <p class="text-gray-600">
-              {resumeData().email} | {resumeData().phone} | {resumeData().address}
+              {resumeData()?.email || ''} | {resumeData()?.phone || ''} | {resumeData()?.address || ''}
             </p>
-            <p class="text-gray-600">تاريخ الازدياد: {resumeData().birthDate}</p>
+            <p class="text-gray-600">تاريخ الميلاد: {resumeData()?.birthDate || ''}</p>
           </div>
           <div class="mt-6 text-right">
             <h3 class="text-2xl font-semibold mb-2 text-purple-600">الملف الشخصي</h3>
-            <p class="text-gray-700">{resumeData().summary}</p>
+            <p class="text-gray-700">{resumeData()?.summary || ''}</p>
           </div>
           <div class="mt-6 text-right">
             <h3 class="text-2xl font-semibold mb-2 text-purple-600">التعليم</h3>
-            <p class="text-gray-700 whitespace-pre-wrap">{resumeData().education}</p>
+            <p class="text-gray-700 whitespace-pre-wrap">{resumeData()?.education || ''}</p>
           </div>
           <div class="mt-6 text-right">
             <h3 class="text-2xl font-semibold mb-2 text-purple-600">الخبرات العملية</h3>
-            <p class="text-gray-700 whitespace-pre-wrap">{resumeData().experience}</p>
+            <p class="text-gray-700 whitespace-pre-wrap">{resumeData()?.experience || ''}</p>
           </div>
           <div class="mt-6 text-right">
             <h3 class="text-2xl font-semibold mb-2 text-purple-600">المهارات</h3>
-            <p class="text-gray-700">{resumeData().skills}</p>
+            <p class="text-gray-700">{resumeData()?.skills || ''}</p>
           </div>
         </div>
       </div>
