@@ -22,19 +22,34 @@ function ResumeGenerator() {
   const generateResume = async () => {
     setLoading(true);
     try {
-      const prompt = `رجاء قم بتنسيق المعلومات التالية إلى سيرة ذاتية احترافية باللغة العربية:\n\n${JSON.stringify(
-        formData(),
-        null,
-        2
-      )}`;
+      const prompt = `رجاء قم بإنشاء سيرة ذاتية احترافية باللغة العربية استنادًا إلى المعلومات التالية وأعدها بتنسيق JSON:
+
+المعلومات:
+
+${JSON.stringify(formData(), null, 2)}
+
+يرجى استخدام هذا التنسيق للرد:
+{
+  "name": "",
+  "contactInfo": "",
+  "summary": "",
+  "education": "",
+  "experience": "",
+  "skills": ""
+}
+`;
 
       const result = await createEvent('chatgpt_request', {
         prompt: prompt,
         response_type: 'json',
       });
 
-      setResumeData(formData());
-      navigate('/resume');
+      if (result) {
+        setResumeData(result);
+        navigate('/resume');
+      } else {
+        console.error('No result received from AI');
+      }
     } catch (error) {
       console.error('Error generating resume:', error);
     } finally {
@@ -43,7 +58,7 @@ function ResumeGenerator() {
   };
 
   return (
-    <div class="h-full bg-gradient-to-br from-purple-100 to-blue-100 p-4">
+    <div class="min-h-screen bg-gradient-to-br from-purple-100 to-blue-100 p-4 text-gray-800">
       <div class="max-w-4xl mx-auto h-full">
         <div class="flex justify-between items-center mb-8">
           <h1

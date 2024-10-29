@@ -1,5 +1,5 @@
 {
-  "name": "new-app",
+  "name": "resume-builder",
   "version": "1.0.0",
   "description": "منشئ السيرة الذاتية الاحترافية باستخدام الذكاء الاصطناعي",
   "type": "module",

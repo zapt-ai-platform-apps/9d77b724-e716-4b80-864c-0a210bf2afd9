@@ -18,7 +18,7 @@ function ResumeDisplay() {
     setLoading(true);
     try {
       const resumeElement = document.getElementById('resume-preview');
-      const canvas = await html2canvas(resumeElement);
+      const canvas = await html2canvas(resumeElement, { scale: 2 });
       const imgData = canvas.toDataURL('image/png');
       const pdf = new jsPDF('p', 'mm', 'a4');
       const imgWidth = 210;
@@ -33,7 +33,7 @@ function ResumeDisplay() {
   };
 
   return (
-    <div class="h-full bg-gradient-to-br from-purple-100 to-blue-100 p-4">
+    <div class="min-h-screen bg-gradient-to-br from-purple-100 to-blue-100 p-4 text-gray-800">
       <div class="max-w-4xl mx-auto">
         <div class="flex justify-between items-center mb-4">
           <h1
@@ -74,19 +74,19 @@ function ResumeDisplay() {
             </p>
             <p class="text-gray-600">تاريخ الازدياد: {resumeData().birthDate}</p>
           </div>
-          <div class="mt-6">
+          <div class="mt-6 text-right">
             <h3 class="text-2xl font-semibold mb-2 text-purple-600">الملف الشخصي</h3>
             <p class="text-gray-700">{resumeData().summary}</p>
           </div>
-          <div class="mt-6">
+          <div class="mt-6 text-right">
             <h3 class="text-2xl font-semibold mb-2 text-purple-600">التعليم</h3>
             <p class="text-gray-700 whitespace-pre-wrap">{resumeData().education}</p>
           </div>
-          <div class="mt-6">
+          <div class="mt-6 text-right">
             <h3 class="text-2xl font-semibold mb-2 text-purple-600">الخبرات العملية</h3>
             <p class="text-gray-700 whitespace-pre-wrap">{resumeData().experience}</p>
           </div>
-          <div class="mt-6">
+          <div class="mt-6 text-right">
             <h3 class="text-2xl font-semibold mb-2 text-purple-600">المهارات</h3>
             <p class="text-gray-700">{resumeData().skills}</p>
           </div>

@@ -4,7 +4,7 @@ function HowToUse() {
   const navigate = useNavigate();
 
   return (
-    <div class="h-full bg-gradient-to-br from-purple-100 to-blue-100 p-4">
+    <div class="min-h-screen bg-gradient-to-br from-purple-100 to-blue-100 p-4 text-gray-800">
       <div class="max-w-4xl mx-auto">
         <div class="flex justify-between items-center mb-4">
           <h1
