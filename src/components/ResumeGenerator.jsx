@@ -1,4 +1,4 @@
-import { createSignal } from 'solid-js';
+import { createSignal, Show } from 'solid-js';
 import { createEvent } from '../supabaseClient';
 import { useNavigate } from '@solidjs/router';
 import { setResumeData } from '../stores/resumeStore';
@@ -22,7 +22,7 @@ function ResumeGenerator() {
   const generateResume = async () => {
     setLoading(true);
     try {
-      const prompt = `Please format the following information into a professional resume in Arabic:\n\n${JSON.stringify(
+      const prompt = `رجاء قم بتنسيق المعلومات التالية إلى سيرة ذاتية احترافية باللغة العربية:\n\n${JSON.stringify(
         formData(),
         null,
         2
@@ -53,8 +53,10 @@ function ResumeGenerator() {
             مولد السيرة الذاتية الاحترافي
           </h1>
         </div>
-        {step() === 1 && <ResumeForm onNext={handleNext} loading={loading()} />}
-        {step() === 2 && (
+        <Show when={step() === 1}>
+          <ResumeForm onNext={handleNext} loading={loading()} />
+        </Show>
+        <Show when={step() === 2}>
           <div class="space-y-6">
             <h2 class="text-2xl font-bold mb-4 text-purple-600">الملخص الشخصي</h2>
             <textarea
@@ -66,18 +68,26 @@ function ResumeGenerator() {
               class="box-border w-full p-3 mb-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-400 focus:border-transparent text-gray-800"
               rows="4"
             ></textarea>
-            <button
-              onClick={() => handleNext({})}
-              class={`cursor-pointer flex-1 px-6 py-3 bg-purple-500 text-white rounded-lg hover:bg-purple-600 transition duration-300 ease-in-out transform hover:scale-105 ${
-                loading() ? 'opacity-50 cursor-not-allowed' : ''
-              }`}
-              disabled={loading()}
-            >
-              التالي
-            </button>
+            <div class="flex space-x-4">
+              <button
+                onClick={() => setStep(step() - 1)}
+                class="cursor-pointer flex-1 px-6 py-3 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition duration-300 ease-in-out transform hover:scale-105"
+              >
+                رجوع
+              </button>
+              <button
+                onClick={() => handleNext({})}
+                class={`cursor-pointer flex-1 px-6 py-3 bg-purple-500 text-white rounded-lg hover:bg-purple-600 transition duration-300 ease-in-out transform hover:scale-105 ${
+                  loading() ? 'opacity-50 cursor-not-allowed' : ''
+                }`}
+                disabled={loading()}
+              >
+                التالي
+              </button>
+            </div>
           </div>
-        )}
-        {step() === 3 && (
+        </Show>
+        <Show when={step() === 3}>
           <div class="space-y-6">
             <h2 class="text-2xl font-bold mb-4 text-purple-600">المعلومات الإضافية</h2>
             <textarea
@@ -107,17 +117,25 @@ function ResumeGenerator() {
               class="box-border w-full p-3 mb-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-400 focus:border-transparent text-gray-800"
               rows="3"
             ></textarea>
-            <button
-              onClick={() => handleNext({})}
-              class={`cursor-pointer flex-1 px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition duration-300 ease-in-out transform hover:scale-105 ${
-                loading() ? 'opacity-50 cursor-not-allowed' : ''
-              }`}
-              disabled={loading()}
-            >
-              توليد السيرة الذاتية
-            </button>
+            <div class="flex space-x-4">
+              <button
+                onClick={() => setStep(step() - 1)}
+                class="cursor-pointer flex-1 px-6 py-3 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition duration-300 ease-in-out transform hover:scale-105"
+              >
+                رجوع
+              </button>
+              <button
+                onClick={() => handleNext({})}
+                class={`cursor-pointer flex-1 px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition duration-300 ease-in-out transform hover:scale-105 ${
+                  loading() ? 'opacity-50 cursor-not-allowed' : ''
+                }`}
+                disabled={loading()}
+              >
+                توليد السيرة الذاتية
+              </button>
+            </div>
           </div>
-        )}
+        </Show>
       </div>
     </div>
   );

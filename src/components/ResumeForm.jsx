@@ -7,10 +7,6 @@ function ResumeForm(props) {
     email: '',
     phone: '',
     address: '',
-    summary: '',
-    education: '',
-    experience: '',
-    skills: '',
   });
 
   const handleNext = (e) => {

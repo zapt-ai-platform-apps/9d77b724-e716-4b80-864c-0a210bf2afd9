@@ -7,6 +7,7 @@ import jsPDF from 'jspdf';
 
 function ResumeDisplay() {
   const navigate = useNavigate();
+  const [loading, setLoading] = createSignal(false);
 
   if (!resumeData()) {
     navigate('/');
@@ -14,14 +15,21 @@ function ResumeDisplay() {
   }
 
   const downloadPDF = async () => {
-    const resumeElement = document.getElementById('resume-preview');
-    const canvas = await html2canvas(resumeElement);
-    const imgData = canvas.toDataURL('image/png');
-    const pdf = new jsPDF('p', 'mm', 'a4');
-    const imgWidth = 210;
-    const imgHeight = (canvas.height * imgWidth) / canvas.width;
-    pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
-    pdf.save('resume.pdf');
+    setLoading(true);
+    try {
+      const resumeElement = document.getElementById('resume-preview');
+      const canvas = await html2canvas(resumeElement);
+      const imgData = canvas.toDataURL('image/png');
+      const pdf = new jsPDF('p', 'mm', 'a4');
+      const imgWidth = 210;
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+      pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+      pdf.save('resume.pdf');
+    } catch (error) {
+      console.error('Error generating PDF:', error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -36,10 +44,13 @@ function ResumeDisplay() {
           </h1>
           <div>
             <button
-              class="cursor-pointer bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition duration-300 ease-in-out transform hover:scale-105 mr-2"
+              class={`cursor-pointer bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition duration-300 ease-in-out transform hover:scale-105 mr-2 ${
+                loading() ? 'opacity-50 cursor-not-allowed' : ''
+              }`}
               onClick={downloadPDF}
+              disabled={loading()}
             >
-              تنزيل PDF
+              {loading() ? 'جاري التنزيل...' : 'تنزيل PDF'}
             </button>
             <button
               class="cursor-pointer bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition duration-300 ease-in-out transform hover:scale-105"
