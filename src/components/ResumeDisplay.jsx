@@ -1,4 +1,4 @@
-import { createSignal } from 'solid-js';
+import { createSignal, onMount } from 'solid-js';
 import { resumeData } from '../stores/resumeStore';
 import { useNavigate } from '@solidjs/router';
 import { saveAs } from 'file-saver';
@@ -9,10 +9,11 @@ function ResumeDisplay() {
   const navigate = useNavigate();
   const [loading, setLoading] = createSignal(false);
 
-  if (!resumeData()) {
-    navigate('/');
-    return null;
-  }
+  onMount(() => {
+    if (!resumeData()) {
+      navigate('/');
+    }
+  });
 
   const downloadPDF = async () => {
     setLoading(true);

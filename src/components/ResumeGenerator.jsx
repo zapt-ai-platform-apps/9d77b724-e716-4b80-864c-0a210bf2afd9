@@ -50,14 +50,14 @@ function ResumeGenerator() {
             class="text-3xl font-bold text-purple-600 cursor-pointer"
             onClick={() => navigate('/')}
           >
-            مولد السيرة الذاتية الاحترافي
+            منشئ السيرة الذاتية الاحترافية
           </h1>
         </div>
         <Show when={step() === 1}>
           <ResumeForm onNext={handleNext} loading={loading()} />
         </Show>
         <Show when={step() === 2}>
-          <div class="space-y-6">
+          <form class="space-y-6">
             <h2 class="text-2xl font-bold mb-4 text-purple-600">الملخص الشخصي</h2>
             <textarea
               placeholder="اكتب نبذة مختصرة عن نفسك"
@@ -70,12 +70,14 @@ function ResumeGenerator() {
             ></textarea>
             <div class="flex space-x-4">
               <button
+                type="button"
                 onClick={() => setStep(step() - 1)}
                 class="cursor-pointer flex-1 px-6 py-3 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition duration-300 ease-in-out transform hover:scale-105"
               >
                 رجوع
               </button>
               <button
+                type="button"
                 onClick={() => handleNext({})}
                 class={`cursor-pointer flex-1 px-6 py-3 bg-purple-500 text-white rounded-lg hover:bg-purple-600 transition duration-300 ease-in-out transform hover:scale-105 ${
                   loading() ? 'opacity-50 cursor-not-allowed' : ''
@@ -85,10 +87,10 @@ function ResumeGenerator() {
                 التالي
               </button>
             </div>
-          </div>
+          </form>
         </Show>
         <Show when={step() === 3}>
-          <div class="space-y-6">
+          <form class="space-y-6">
             <h2 class="text-2xl font-bold mb-4 text-purple-600">المعلومات الإضافية</h2>
             <textarea
               placeholder="التعليم"
@@ -119,12 +121,14 @@ function ResumeGenerator() {
             ></textarea>
             <div class="flex space-x-4">
               <button
+                type="button"
                 onClick={() => setStep(step() - 1)}
                 class="cursor-pointer flex-1 px-6 py-3 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition duration-300 ease-in-out transform hover:scale-105"
               >
                 رجوع
               </button>
               <button
+                type="button"
                 onClick={() => handleNext({})}
                 class={`cursor-pointer flex-1 px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition duration-300 ease-in-out transform hover:scale-105 ${
                   loading() ? 'opacity-50 cursor-not-allowed' : ''
@@ -134,7 +138,7 @@ function ResumeGenerator() {
                 توليد السيرة الذاتية
               </button>
             </div>
-          </div>
+          </form>
         </Show>
       </div>
     </div>
